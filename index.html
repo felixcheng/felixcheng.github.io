@@ -18,10 +18,10 @@
       <div class="menu_nav">
         <ul>
           <li class="active"><a href="index.html"><span>Home Page</span></a></li>
-          <li><a href="support.html"><span>Support</span></a></li>
+<!--           <li><a href="support.html"><span>Support</span></a></li>
           <li><a href="about.html"><span>About Us</span></a></li>
           <li><a href="blog.html"><span>Blog</span></a></li>
-          <li><a href="contact.html"><span>Contact Us</span></a></li>
+          <li><a href="contact.html"><span>Contact Us</span></a></li> -->
         </ul>
       </div>
       <div class="logo">
@@ -39,14 +39,29 @@
     <div class="content_resize">
       <div class="mainbar">
         <div class="article">
-          <h2><span>Excellent Solution</span> For Your Business</h2>
-          <p class="infopost">Posted on <span class="date">11 sep 2018</span> by <a href="#">Admin</a> &nbsp;&nbsp;|&nbsp;&nbsp; Filed under <a href="#">templates</a>, <a href="#">internet</a> <a href="#" class="com"><span>11</span></a></p>
+          <h2><span>Can you have two directives</span> on the same element?</h2>
+          <p class="infopost">Posted on <span class="date">25 MAR 2014</span> 
           <div class="clr"></div>
           <div class="img"><img src="images/img1.jpg" width="638" height="192" alt="" class="fl" /></div>
           <div class="post_content">
-            <p</p>
+            <p>
+              
+              The answer is: Yes you can
+              But it is not that simple.
+              I came across to have to render a map on one page and render another with a route on it on another page; of course it can be done by coping code from the first page to the second one, and then adding the route. However, it would totally violate DRY (don’t repeat yourself) rule. 
+              Here enters directive, the major tool that deals with dom manipulation in angular, and it is reusable. However, if you put two directives in one element, you would probably have the following error:
+              Why Angular doesn’t like two directives asking for the same scope on the same element? The reasons can be:
+              1.  Angular doesn’t know which directive comes first;
+              2.  Angular doesn’t know what to do with the dom rendered by the first directive.
+              To fix 
+              The first can be addressed by changing the ‘priority’ property of directives. The higher the value, the earlier the directive will get executed. If one directive has to operate before another, this property has to be set accordingly.
+              The other is trickier; once you’ve decided which directive is the first (let’s call it Drt A), you also have to decide how the directives interact with each other. If you want the dom created by second one (Drt B) to replace that by Drt A, set the ‘replace’ property of Drt B to ‘true’. Otherwise, don’t do anything on it (which is defaulted to be ‘false’). 
+              Of course, when you put two directives together, it is because you want to reuse the product of Drt A on Drt B; the key here is the property ‘transclude’ (a buzz-word that isn’t even included in the Oxford Dictionary). ‘Transclude’ indicates whether the new directive is going to accept and be able to use the dom in the original directive. Clearly, you have to set ‘transclude’ to be true in Drt B.
+              This is not the end of the story. Planning what to put under the controller function or the link function is equally important. In directive, the controller function is responsible for before the compilation while the link is for after. In our case, we want to pass some information in the scope from Drt A to Drt B, so it is critical to writing codes under the controller of the former; or else, the scope can’t pass the information as needed. Then in Drt B, just manipulate your scope under link, and Done!
+
+            </p>
             <p><strong>strong</p>
-            <p class="spec"><a href="#" class="rm">Read more</a></p>
+            <!-- <p class="spec"><a href="#" class="rm">Read more</a></p> -->
           </div>
           <div class="clr"></div>
         </div>
@@ -69,12 +84,12 @@
           <h2 class="star"><span>Sidebar</span> Menu</h2>
           <div class="clr"></div>
           <ul class="sb_menu">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">TemplateInfo</a></li>
+            <li><a href="#">About Me</a></li>
+<!--             <li><a href="#">TemplateInfo</a></li>
             <li><a href="#">Style Demo</a></li>
             <li><a href="#">Blog</a></li>
             <li><a href="#">Archives</a></li>
-            <li><a href="#">Web Templates</a></li>
+            <li><a href="#">Web Templates</a></li> -->
           </ul>
         </div>
        
@@ -109,11 +124,8 @@
   </div>
   <div class="footer">
     <div class="footer_resize">
-      <p class="lf">&copy; Copyright <a href="#">MyWebSite</a>.</p>
-      <p class="rf">Design by Dream <a href="http://www.dreamtemplate.com/">Web Templates</a></p>
       <div style="clear:both;"></div>
     </div>
   </div>
 </div>
-<div align=center>This template  downloaded form <a href='http://all-free-download.com/free-website-templates/'>free website templates</a></div></body>
 </html>
