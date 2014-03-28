@@ -35,6 +35,8 @@ h2 {
 p {
 	margin:8px 0;
 	padding:0 0 8px 0;
+	font-size: 16px;
+	line-height: 22px
 }
 a {
 	color:#3d7fc2;
@@ -356,7 +358,7 @@ p.infopost span.date {
 }
 .fbg .c2 {
 	padding:0 36px 0 16px;
-	width:280px;
+	width:50%;
 }
 .fbg .c3 {
 	padding:0 0 0 16px;
@@ -502,4 +504,8 @@ ol li .send {
 }
 a {
 	outline:none;
+}
+
+.links {
+	margin-left: 5px
 }

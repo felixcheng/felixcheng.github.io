@@ -46,21 +46,27 @@
           <div class="post_content">
             <p>
               
-              The answer is: Yes you can
-              But it is not that simple.
-              I came across to have to render a map on one page and render another with a route on it on another page; of course it can be done by coping code from the first page to the second one, and then adding the route. However, it would totally violate DRY (don’t repeat yourself) rule. 
-              Here enters directive, the major tool that deals with dom manipulation in angular, and it is reusable. However, if you put two directives in one element, you would probably have the following error:
-              Why Angular doesn’t like two directives asking for the same scope on the same element? The reasons can be:
-              1.  Angular doesn’t know which directive comes first;
-              2.  Angular doesn’t know what to do with the dom rendered by the first directive.
-              To fix 
-              The first can be addressed by changing the ‘priority’ property of directives. The higher the value, the earlier the directive will get executed. If one directive has to operate before another, this property has to be set accordingly.
-              The other is trickier; once you’ve decided which directive is the first (let’s call it Drt A), you also have to decide how the directives interact with each other. If you want the dom created by second one (Drt B) to replace that by Drt A, set the ‘replace’ property of Drt B to ‘true’. Otherwise, don’t do anything on it (which is defaulted to be ‘false’). 
-              Of course, when you put two directives together, it is because you want to reuse the product of Drt A on Drt B; the key here is the property ‘transclude’ (a buzz-word that isn’t even included in the Oxford Dictionary). ‘Transclude’ indicates whether the new directive is going to accept and be able to use the dom in the original directive. Clearly, you have to set ‘transclude’ to be true in Drt B.
-              This is not the end of the story. Planning what to put under the controller function or the link function is equally important. In directive, the controller function is responsible for before the compilation while the link is for after. In our case, we want to pass some information in the scope from Drt A to Drt B, so it is critical to writing codes under the controller of the former; or else, the scope can’t pass the information as needed. Then in Drt B, just manipulate your scope under link, and Done!
+              <p>The answer is: Yes you can.</p>
+              <p>But it is not that simple.</p>
+              <p>I came across to have to render a map on one page and render another with a route on it on another page; of course it can be done by coping code from the first page to the second one, and then adding the route. However, it would totally violate DRY (don’t repeat yourself) rule. </p>
+
+              <p>Here enters directive, the major tool that deals with dom manipulation in angular, and it is reusable. However, if you put two directives in one element, you would probably have the following error:</p>
+
+              <p>Why Angular doesn’t like two directives asking for the same scope on the same element? The reasons can be:</p>
+              <p>1.  Angular doesn’t know which directive comes first;</p>
+              <p>2.  Angular doesn’t know what to do with the dom rendered by the first directive.
+              To fix </p>
+
+              <p>The first can be addressed by changing the <em>‘priority’</em> property of directives. The higher the value, the earlier the directive will get executed. If one directive has to operate before another, this property has to be set accordingly.</p>
+
+              <p>The other is trickier; once you’ve decided which directive is the first (let’s call it Drt A), you also have to decide how the directives interact with each other. If you want the dom created by second one (Drt B) to replace that by Drt A, set the <em>‘replace’</em> property of Drt B to ‘true’. Otherwise, don’t do anything on it (which is defaulted to be ‘false’). </p>
+
+              <p>Of course, when you put two directives together, it is because you want to reuse the product of Drt A on Drt B; the key here is the property <em>‘transclude’</em> (a buzz-word that isn’t even included in the Oxford Dictionary). ‘Transclude’ indicates whether the new directive is going to accept and be able to use the dom in the original directive. Clearly, you have to set ‘transclude’ to be true in Drt B.</p>
+
+              <p>This is not the end of the story. Planning what to put under the controller function or the link function is equally important. In directive, the controller function is responsible for before the compilation while the link is for after. In our case, we want to pass some information in the scope from Drt A to Drt B, so it is critical to writing codes under the controller of the former; or else, the scope can’t pass the information as needed. Then in Drt B, just manipulate your scope under link, and <strong>Done!</strong></p>
 
             </p>
-            <p><strong>strong</p>
+            <p><strong></strong></p>
             <!-- <p class="spec"><a href="#" class="rm">Read more</a></p> -->
           </div>
           <div class="clr"></div>
@@ -71,13 +77,12 @@
           <div class="clr"></div>
           <div class="img"><img src="images/img2.jpg" width="638" height="192" alt="" class="fl" /></div>
           <div class="post_content">
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse bibendum. Cras id urna. <a href="#">Morbi tincidunt, orci ac convallis aliquam, lectus turpis varius lorem, eu posuere nunc justo tempus leo.</a> Donec mattis, purus nec placerat bibendum, dui pede condimentum odio, ac blandit ante orci ut diam. Cras fringilla magna. Phasellus suscipit, leo a pharetra condimentum, lorem tellus eleifend magna, eget fringilla velit magna id neque. Curabitur vel urna. In tristique orci porttitor ipsum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse bibendum. Cras id urna. Morbi tincidunt, orci ac convallis aliquam.</p>
-            <p><strong>Aenean consequat porttitor adipiscing. Nam pellentesque justo ut tortor congue lobortis. Donec venenatis sagittis fringilla.</strong> Etiam nec libero magna, et dictum velit. Proin mauris mauris, mattis eu elementum eget, commodo in nulla. Mauris posuere venenatis pretium. Maecenas a dui sed lorem aliquam dictum. Nunc urna leo, imperdiet eu bibendum ac, pretium ac massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla facilisi. Quisque condimentum luctus ullamcorper.</p>
+            <p></p>
             <p class="spec"><a href="#" class="rm">Read more</a></p>
           </div>
           <div class="clr"></div>
         </div>
-        <p class="pages"><small>Page 1 of 2</small> <span>1</span> <a href="#">2</a> <a href="#">&raquo;</a></p>
+        <!-- <p class="pages"><small>Page 1 of 2</small> <span>1</span> <a href="#">2</a> <a href="#">&raquo;</a></p> -->
       </div>
       <div class="sidebar">
         <div class="gadget">
@@ -114,10 +119,10 @@
       <div class="col c2">
         <h2><span>Contact</span> </h2>
         <p>.</p>
-        <p class="contact_info"> <span>Github:</span> <a href="url">https://github.com/felixcheng</a><br />
-          <span>LinkedIn:</span> <a href="url">www.linkedin.com/in/felixyscheng</a><br />
+        <p class="contact_info"> <span>Github: </span> <a class="links" href="url"> https://github.com/felixcheng</a><br />
+          <span>LinkedIn: </span> <a class="links" href="url"> www.linkedin.com/in/felixyscheng</a><br />
 
-          <span>E-mail:</span> <a href="#">chengfelix@gmail.com</a> </p>
+          <span>E-mail: </span> <a class="links" href="#"> chengfelix@gmail.com</a> </p>
       </div>
       <div class="clr"></div>
     </div>
