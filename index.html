@@ -72,12 +72,39 @@
           <div class="clr"></div>
         </div>
         <div class="article">
-          <h2><span>We'll Make Sure Template</span> Works For You</h2>
-          <p class="infopost">Posted on <span class="date">29 aug 2016</span> by <a href="#">Admin</a> &nbsp;&nbsp;|&nbsp;&nbsp; Filed under <a href="#">templates</a>, <a href="#">internet</a> <a href="#" class="com"><span>7</span></a></p>
+          <h2><span>$scope: to pass or not?</span> This is the question. </h2>
+          <p class="infopost">Posted on <span class="date">29 MAR 2014</span>
           <div class="clr"></div>
           <div class="img"><img src="images/img2.jpg" width="638" height="192" alt="" class="fl" /></div>
           <div class="post_content">
-            <p></p>
+            <p>$scope: to pass or not? This is the question.</p>
+            <p>When I first started writing program under Angularjs framework, I used the angular seed structure to organize my files; this is a bad idea. As your program becomes bigger and more complex, you have to adopt a more modular organization or your single controller file will become too overwhelmingly long and unreadable.</p>
+              <p>However, another problem arises: how can I pass a scope from controller to others? I first did it by putting lots of my information in my rootscope. Again, a bad practice. 
+              Of course, in angular rootscope is created as the variable closest to the global scope and is meant for passing information. And that is it. However, more often than not, we pass information so that we can manipulate the data; using rootscope for this purpose is a total no-no; as according to the documentation of Angular (FAQ session):</p>
+              <p>“Of course, global state sucks and you should use $rootScope sparingly, like you would (hopefully) use with global variables in any language. In particular, don't use it for code, only data. If you're tempted to put a function on $rootScope, it's almost always better to put it in a service that can be injected where it's needed, and more easily tested.</p>
+              <p>Conversely, don't create a service whose only purpose in life is to store and return bits of data.”</p>
+              <p>So what can we do to pass scope between controllers? First, depends on your structure, you can employ the built-in event listener of $emit, $on and $broadcast. From the source controller, use $emit (if source is a child to the receiver) or $broadcast (if source is a parent) to dispatch the information to the receiver controller, which should use $on to listen.</p>
+              <p>Another way is just create service for passing information.</p>  
+              <div class="code">
+              <p>angular.module('servicePassScope', [])</p>
+              <p>  .service('passScope', function(){</p>
+                <p>  var storage = {};</p>
+                  
+                <p>  var store = function(info, key){</p>
+                <p>    storage.key = info;</p>
+                <p>  };</p>
+
+                <p>  var retrieve= function(key){</p>
+
+                <p>    return storage.key;</p>
+                <p>  };</p>
+
+                <p>  return {store : store, retrieve : retrieve};</p>
+                <p> });</p>
+                </div>
+
+              <p>Such service is easy to write and handy to use. Besides keeping your rootscope clean, another benefit is this information can be directly available to your other services, which cannot inject with $scope.</p>
+</p>
             <p class="spec"><a href="#" class="rm">Read more</a></p>
           </div>
           <div class="clr"></div>
