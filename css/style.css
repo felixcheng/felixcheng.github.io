@@ -509,3 +509,8 @@ a {
 .links {
 	margin-left: 5px
 }
+
+.code {
+	background-color: black;
+	color: white;
+}
