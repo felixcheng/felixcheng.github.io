@@ -36,7 +36,7 @@ p {
 	margin:8px 0;
 	padding:0 0 8px 0;
 	font-size: 16px;
-	line-height: 22px
+	line-height: 22px;
 }
 a {
 	color:#3d7fc2;
@@ -513,4 +513,6 @@ a {
 .code {
 	background-color: black;
 	color: white;
+	white-space: pre;
+	line-height: 1px;
 }

@@ -86,21 +86,19 @@
               <p>So what can we do to pass scope between controllers? First, depends on your structure, you can employ the built-in event listener of $emit, $on and $broadcast. From the source controller, use $emit (if source is a child to the receiver) or $broadcast (if source is a parent) to dispatch the information to the receiver controller, which should use $on to listen.</p>
               <p>Another way is just create service for passing information.</p>  
               <div class="code">
-              <p>angular.module('servicePassScope', [])</p>
-              <p>  .service('passScope', function(){</p>
-                <p>  var storage = {};</p>
-                  
-                <p>  var store = function(info, key){</p>
-                <p>    storage.key = info;</p>
-                <p>  };</p>
+              <p>angular.module('servicePassScope', [])
+                .service('passScope', function(){
+                    var storage = {};
+                    var store = function(info, key){
+                        storage.key = info;
+                    };
 
-                <p>  var retrieve= function(key){</p>
+                    var retrieve= function(key){
+                        return storage.key;
+                    };
 
-                <p>    return storage.key;</p>
-                <p>  };</p>
-
-                <p>  return {store : store, retrieve : retrieve};</p>
-                <p> });</p>
+                    return {store: store, retrieve: retrieve};
+                });</p>
                 </div>
 
               <p>Such service is easy to write and handy to use. Besides keeping your rootscope clean, another benefit is this information can be directly available to your other services, which cannot inject with $scope.</p>
